@@ -1,50 +1,57 @@
-<!DOCTYPE html>
-<html>
-    <header>
-        <!-- title of page -->
-        <title>
-            Mr.OrMs.
-        </title>
-        <meta lang="eng">
-        <meta name="author" content="Parsa Sabaghi">
-        <meta charset="UTF-8">
-        <!-- add css -->
-        <link rel="stylesheet" href="style.css">
-        <!-- js added -->
-        <script type="text/javascript" src="script.js" defer></script>
-    </header>
-    <body>
-        <!-- rectangle of contents -->
-        <div id="flex-box1">
-            <!-- box of form(left box of contents) -->
-            <div id="form-box">
-            <form id="main-form">
-                <!-- fieldset to make groupe fields with name = Mr. or Ms. -->
-                <fieldset>
-                    <legend><h1>Mr. or Ms.</h1></legend>
-                    Name <input id="name-field" type="text" name="name" maxlength="255"><br /><br />
-                    <input class="radio-button" type="radio" name="sex" value="male"> Male<br />
-                    <input class="radio-button" type="radio" name="sex" value="female"> Female<br /><br />
-                    <button id="submit-button" type="submit">Submit</button><br />
-                    <button id="save-button" type="button">Save</button>
-                </fieldset>
-            </form>
-            </div>
-            <!-- right box of contents -->
-            <div id="flex-box2">
-            <!-- top box of right box of contents -->
-            <div id="prediction-box">
-                <h1>Prediction</h1>
-                <p id="result-string"></p>
-                <p id="result-percent"></p>
-            </div>
-            <!-- bottom box of right box of contents -->
-            <div id="savedAnswers-box">
-                <h1>Saved Answer</h1>
-                <p id="saved-answer"></p><br />
-                <button id="clear-button" type="button">Clear</button>
-            </div>
-            </div>
-        </div>
-    </body>
-</html>
+<script>
+  document.write(document.location);
+</script>
+<form
+  action="{{route('contact.send')}}"
+  class="mb-3"
+  method="post"
+  enctype="multipart/form-data"
+>
+  {!! csrf_field() !!}
+  <div class="form-row">
+    <div class="form-group col-md-5">
+      <label for="name" class="control-label">Name</label>
+      <input
+        name="name"
+        class="form-control"
+        type="text"
+        id="name"
+        value="{{old('name')}}"
+      />
+    </div>
+    <div class="form-group col-md-7">
+      <label for="email" class="control-label">Email</label>
+      <input
+        name="email"
+        class="form-control"
+        type="email"
+        id="email"
+        value="{{old('email')}}"
+      />
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12 form-group">
+      <label for="body" class="control-label">Message</label>
+      <textarea name="body" id="body" class="form-control" cols="50" rows="10">
+{{old('body')}}</textarea
+      >
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 text-right">
+      <div
+        class="g-recaptcha"
+        data-sitekey="6Lc4Kp8qAAAAAGxAlXK8J7Nehtln8QiXoY4VyCh8"
+      ></div>
+    </div>
+  </div>
+  <div class="form-row mt-2">
+    <div class="col-md-2 form-group text-right">
+      <button type="submit" class="btn btn-info">Send</button>
+    </div>
+  </div>
+</form>
+
+<script src="https://www.google.com/recaptcha/api.js"></script>
